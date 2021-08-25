@@ -21,7 +21,7 @@ namespace Weather.Infrastructure
             connection = (SqlConnection)_context.Database.Connection;
         }
 
-        public async Task<bool> AddWeather(WeatherModel entity)
+        public async Task AddWeather(WeatherModel entity)
         {
             try
             {
@@ -34,8 +34,10 @@ namespace Weather.Infrastructure
                 SqlParameter MinTemperature = new SqlParameter("MinTemperature", entity.Main.Temp_Min) { SqlDbType = SqlDbType.Float };
                 SqlParameter MaxTemperature = new SqlParameter("MaxTemperature", entity.Main.Temp_Max) { SqlDbType = SqlDbType.Float };
                 SqlParameter Humidity = new SqlParameter("Humidity", entity.Main.Humidity) { SqlDbType = SqlDbType.Float };
-                SqlParameter Date = new SqlParameter("Date", DateTime.Now) { SqlDbType = SqlDbType.Float };
-                SqlCommand command = new SqlCommand { Connection = connection, CommandType = CommandType.StoredProcedure, CommandText = $@"[dbo].[WeatherApp_Procedure]" };
+                SqlParameter Date = new SqlParameter("Date", DateTime.Now) { SqlDbType = SqlDbType.DateTime };
+
+                SqlCommand command = new SqlCommand { Connection = connection, CommandType = CommandType.StoredProcedure, CommandText = $@"[dbo].[Weather_Procedure]" };
+                
                 command.Parameters.Add(Status);
                 command.Parameters.Add(Description);
                 command.Parameters.Add(Temperature);
@@ -43,15 +45,11 @@ namespace Weather.Infrastructure
                 command.Parameters.Add(MinTemperature);
                 command.Parameters.Add(MaxTemperature);
                 command.Parameters.Add(Humidity);
+                command.Parameters.Add(Date);
 
-                var result = await command.ExecuteNonQueryAsync();
-
-                return true;
+                await command.ExecuteNonQueryAsync();
             }
-            catch (Exception)
-            {
-                return false;
-            }
+            catch (Exception e){ }
             finally
             {
                 connection.Close();

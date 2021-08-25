@@ -101,6 +101,10 @@
       <Project>{c4ca09b6-8b15-4c64-871d-2e56735b450d}</Project>
       <Name>Weather.Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Weather.Infrastructure\Weather.Infrastructure.csproj">
+      <Project>{e5f444cb-6729-404e-bd09-03d13fd3f5f7}</Project>
+      <Name>Weather.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

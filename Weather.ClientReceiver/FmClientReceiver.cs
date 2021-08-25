@@ -2,28 +2,29 @@
 using Newtonsoft.Json;
 using System.Windows.Forms;
 using Weather.Api.Models;
+using Weather.Infrastructure;
 
 namespace Weather.ClientReceiver
 {
     public partial class FmClientReceiver : Form
     {
         IHubProxy _hub;
+        Repository _repository;
         public FmClientReceiver()
         {
             InitializeComponent();
-            Receive($"a");
+            _repository = new Repository();
+            Receive();
 
         }
 
-        private void Receive(string a)
+        private void Receive()
         {
             var connection = new HubConnection(ClientReceiverSettings.Default.Url);
             _hub = connection.CreateHubProxy("Weather");
             connection.Start().Wait();
 
-
-
-            _hub.On("Receive", x =>
+            _hub.On("Receive", async x =>
             {
                 WeatherModel weather = JsonConvert.DeserializeObject<WeatherModel>(x);
 
@@ -31,6 +32,8 @@ namespace Weather.ClientReceiver
                 {
                     label1.Text = weather.Weather[0].Description;
                 });
+
+                await _repository.AddWeather(weather);
             });
         }
     }
