@@ -29,7 +29,7 @@ namespace Weather.Service
         {
             WrittingToFile($"The service was started at {DateTime.Now:dd/MM/yyyy hh:mm:ss}");
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
-            timer.Interval = (1000 * 60/* * 60*/);
+            timer.Interval = (1000 * 20/* * 60*/);
             timer.Enabled = true;
         }
 

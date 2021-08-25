@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
+using System;
 using System.Windows.Forms;
 using Weather.Api.Models;
 using Weather.Infrastructure;
@@ -28,9 +29,24 @@ namespace Weather.ClientReceiver
             {
                 WeatherModel weather = JsonConvert.DeserializeObject<WeatherModel>(x);
 
-                label1.Invoke((MethodInvoker)delegate
+                LblDate.Invoke((MethodInvoker)delegate
                 {
-                    label1.Text = weather.Weather[0].Description;
+                    LblDate.Text = Convert.ToString(DateTime.Now);
+                });
+
+                LblTemperature.Invoke((MethodInvoker)delegate
+                {
+                    LblTemperature.Text = $"{Convert.ToString(weather.Main.Temp)}ºC";
+                });
+
+                LblFeelsMainDescription.Invoke((MethodInvoker)delegate
+                {
+                    LblFeelsMainDescription.Text = $"Feels like {Convert.ToString(weather.Main.Feels_Like)}. {weather.Weather[0].Main}. {weather.Weather[0].Description}.";
+                });
+
+                LblWeather.Invoke((MethodInvoker)delegate
+                {
+                    LblWeather.Text = $"Temperature: \nMinimun: {Convert.ToString(weather.Main.Temp_Min)}ºC Maximun: {Convert.ToString(weather.Main.Temp_Max)}ºC \nHumidity: {Convert.ToString(weather.Main.Humidity)}%.";
                 });
 
                 await _repository.AddWeather(weather);
