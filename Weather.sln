@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Api", "Weather.Api\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{7402EF82-EF8A-480F-9076-B07F22297B99}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Desktop\ITLA\CUATRIMESTRES\CUATRIMESTRE VI\I. PROGRAMACIÓN PARALELA\MÓDULO XIII - FINAL PRACTICE\II. ACTIVIDAD\III. BASE DATOS\DatabaseScript.sql = ..\..\..\Desktop\ITLA\CUATRIMESTRES\CUATRIMESTRE VI\I. PROGRAMACIÓN PARALELA\MÓDULO XIII - FINAL PRACTICE\II. ACTIVIDAD\III. BASE DATOS\DatabaseScript.sql
+		DatabaseScript.sql = DatabaseScript.sql
 	EndProjectSection
 EndProject
 Global
