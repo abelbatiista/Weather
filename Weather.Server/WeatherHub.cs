@@ -6,9 +6,9 @@ namespace Weather.Server
     [HubName("Weather")]
     public class WeatherHub : Hub
     {
-        public void Notify(string info)
+        public void Emit(string info)
         {
-            Clients.All.SendInfo(info);
+            Clients.All.Receive(info);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Weather.ClientReceiver
             _hub = connection.CreateHubProxy("Weather");
             connection.Start().Wait();
 
-            _hub.On("SendInfo", x =>
+            _hub.On("Receive", x =>
             {
                 label1.Invoke((MethodInvoker)delegate
                 {

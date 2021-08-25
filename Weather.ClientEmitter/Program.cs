@@ -20,7 +20,7 @@ namespace Weather.ClientEmitter
                 Console.Clear();
                 Console.WriteLine("Enviar al cliente: ");
                 string emitting = Console.ReadLine();
-                _hub.Invoke("Notify", emitting).Wait();
+                _hub.Invoke("Emit", emitting).Wait();
                 Console.WriteLine("Presione 'Enter' para salir.");
                 if (Console.ReadKey(true).Key == ConsoleKey.Enter) loop = false;
             }
