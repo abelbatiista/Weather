@@ -66,5 +66,11 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Weather.Api\Weather.Api.csproj">
+      <Project>{c4ca09b6-8b15-4c64-871d-2e56735b450d}</Project>
+      <Name>Weather.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

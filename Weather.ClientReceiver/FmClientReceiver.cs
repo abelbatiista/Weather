@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.SignalR.Client;
+using Newtonsoft.Json;
 using System.Windows.Forms;
+using Weather.Api.Models;
 
 namespace Weather.ClientReceiver
 {
@@ -19,11 +21,15 @@ namespace Weather.ClientReceiver
             _hub = connection.CreateHubProxy("Weather");
             connection.Start().Wait();
 
+
+
             _hub.On("Receive", x =>
             {
+                WeatherModel weather = JsonConvert.DeserializeObject<WeatherModel>(x);
+
                 label1.Invoke((MethodInvoker)delegate
                 {
-                    label1.Text = x;
+                    label1.Text = weather.Weather[0].Description;
                 });
             });
         }
