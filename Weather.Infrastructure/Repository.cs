@@ -49,7 +49,7 @@ namespace Weather.Infrastructure
 
                 await command.ExecuteNonQueryAsync();
             }
-            catch (Exception e){ }
+            catch (Exception){ }
             finally
             {
                 connection.Close();

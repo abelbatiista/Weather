@@ -9,17 +9,20 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using Weather.ClientEmitter;
 
 namespace Weather.Service
 {
     public partial class WeatherService : ServiceBase
     {
         private readonly Timer timer;
+        private readonly Emitter emitter;
 
         public WeatherService()
         {
             InitializeComponent();
             timer = new Timer();
+            emitter = new Emitter();
         }
 
         protected override void OnStart(string[] args)
@@ -38,6 +41,7 @@ namespace Weather.Service
         private void OnElapsedTime(object source, ElapsedEventArgs e)
         {
             WrittingToFile($"The service was executed again at {DateTime.Now:dd/MM/yyyy hh:mm:ss}");
+            emitter.Emit();
         }
 
         private void WrittingToFile(string message)

@@ -9,7 +9,7 @@ namespace Weather.ClientReceiver
     public partial class FmClientReceiver : Form
     {
         IHubProxy _hub;
-        Repository _repository;
+        readonly Repository _repository;
         public FmClientReceiver()
         {
             InitializeComponent();

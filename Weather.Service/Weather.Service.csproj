@@ -81,5 +81,11 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Weather.ClientEmitter\Weather.ClientEmitter.csproj">
+      <Project>{dcf71246-9398-4310-a48d-f5239e30f338}</Project>
+      <Name>Weather.ClientEmitter</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
